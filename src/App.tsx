@@ -1,9 +1,12 @@
-import "./App.css"
+import  { Home } from "./pages/Home";
 
 function App() {
   return (
     <div>
-      {/* Tu aplicación comienza aquí */}
+
+      <Home/>
+    
+    
     </div>
   );
 }
