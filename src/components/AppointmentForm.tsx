@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 
-type FormData = {
+type FormDataType = {
     name: string;     
     email: string;
     date: string;
@@ -11,8 +11,12 @@ type FormData = {
 
 
 export const AppointmentForm = () => {
+    // Estado para manejar los datos del formulario
+    // no se si es necesario crear un objeto por defecto, pero lo hago por si acaso ? 
+    
+    // deberia crear un estado global para manejar los datos del formulario y de la lista de turnos
 
-    const [formData, setFormData] = useState <FormData> ({
+    const [formData, setFormData] = useState <FormDataType> ({
         name: '',
         email: '',
         date: '',
@@ -20,11 +24,13 @@ export const AppointmentForm = () => {
         service: ''
     })
 
-    const [ appointments, setAppointments] = useState <FormData[]> ([
+    const [ appointments, setAppointments] = useState <FormDataType[]> ([
         formData
     ])  
 
-   
+    // Maneja el envío del formulario
+    // por ahora solo guarda los datos en el estado y en el localStorage    
+    
     const HandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 
 
