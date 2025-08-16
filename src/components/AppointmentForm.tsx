@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 
 
-type FormDataType = {
+export type AppointmentDataType = {
     name: string;     
     email: string;
     date: string;
     time: string;
     service: string;
+    id? : string
 }
 
 
@@ -16,17 +17,9 @@ export const AppointmentForm = () => {
     
     // deberia crear un estado global para manejar los datos del formulario y de la lista de turnos
 
-    const [formData, setFormData] = useState <FormDataType> ({
-        name: '',
-        email: '',
-        date: '',
-        time: '',
-        service: ''
-    })
+    const [formData, setFormData] = useState <AppointmentDataType>()
 
-    const [ appointments, setAppointments] = useState <FormDataType[]> ([
-        formData
-    ])  
+    const [ appointments, setAppointments] = useState <AppointmentDataType[]> ([])  
 
     // Maneja el envío del formulario
     // por ahora solo guarda los datos en el estado y en el localStorage    
@@ -37,7 +30,7 @@ export const AppointmentForm = () => {
         e.preventDefault();
         const form = e.currentTarget;
 
-        const formData = {
+        const data = {
             name: (form.elements.namedItem('name') as HTMLInputElement)?.value,
             email: (form.elements.namedItem('email') as HTMLInputElement)?.value,
             date: (form.elements.namedItem('date') as HTMLInputElement)?.value,
@@ -45,16 +38,17 @@ export const AppointmentForm = () => {
             service: (form.elements.namedItem('service') as HTMLInputElement)?.value,
         };
 
-        setFormData(formData);
+        setFormData(data);
 
-        setAppointments([...appointments, formData]);
+        setAppointments([...appointments, data]);
 
         localStorage.setItem('appointments', JSON.stringify(appointments));
         
+        console.log(appointments)
     }
 
 
-    console.log(formData)
+   
 
   return (
     <div className='border-2 border-gray-300 p-4 rounded-lg shadow-md m-10'>
@@ -72,7 +66,7 @@ export const AppointmentForm = () => {
             <label htmlFor=""> servicio</label>
             <input name = 'service' className=' border-2 border-gray-600 m-2' type="text" />
 
-            <button > submit </button>
+            <button className=" rounded bg-blue-300 text-white font-bold p-4 cursor-pointer" > submit </button>
 
     </form>
 

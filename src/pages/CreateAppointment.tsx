@@ -1,7 +1,7 @@
 import { AppointmentForm } from "../components/AppointmentForm"
 
 export const CreateAppointment = () => {
-
+           
    
 
   return (

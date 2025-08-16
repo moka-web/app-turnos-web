@@ -1,5 +1,6 @@
+import type { AppointmentDataType } from "./AppointmentForm";
+import { AppointmentItemList } from "./AppointmentItemList";
 
-import React from 'react'
 
 export const AppointmentList = () => {
         //necesito que este componente se actualice cuando se agrega un nuevo turno en el formulario
@@ -9,23 +10,24 @@ export const AppointmentList = () => {
     // Aqui deberia mostrar la lista de turnos guardados en el localStorage
     const appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
 
-
+    
 
 
   return (
-    <div className='border-2 border-gray-300 p-4 rounded-lg shadow-md m-10'>
+    <div className='border-2 border-gray-300  rounded-lg shadow-md  h-full w-full  flex flex-col gap-2 p-2'>
 
         {
-            appointments?.map((appointment: any, index: number) => (
-                <article key={index} className='border-2 border-gray-300 p-2 w-full m-2'>
-    
-                    <h3 className='font-bold'>{appointment.name}</h3>
-                    <p>{appointment.email}</p>
-                    <p>{appointment.date}</p>
-                    <p>{appointment.time}</p>
-                    <p>{appointment.service}</p>
-
-                </article>
+            appointments?.map((appointment : AppointmentDataType , index: number) => (
+                
+              <AppointmentItemList
+                 key={index}
+                 name= {appointment.name}   
+                 email={appointment.email}
+                 date={appointment.date}
+                 time={appointment.time}
+                 service={appointment.service}
+                 />
+        
             ))
         }
 
