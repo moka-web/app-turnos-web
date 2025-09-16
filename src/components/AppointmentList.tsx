@@ -15,7 +15,6 @@ export const AppointmentList = () => {
 
   return (
     <div className='border-2 border-gray-300  rounded-lg shadow-md  h-full w-full  flex flex-col gap-2 p-2'>
-
         {
             appointments?.map((appointment : AppointmentDataType , index: number) => (
                 
@@ -30,9 +29,6 @@ export const AppointmentList = () => {
         
             ))
         }
-
-      
-
     </div>
   )
 }

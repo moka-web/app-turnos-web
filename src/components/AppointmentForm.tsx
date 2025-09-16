@@ -1,33 +1,27 @@
-import React, { useState } from 'react'
-
-
-export type AppointmentDataType = {
-    name: string;     
-    email: string;
-    date: string;
-    time: string;
-    service: string;
-    id? : string
-}
+import React, { useEffect, useState } from 'react'
+import type { AppointmentDataType } from '../types/appointment.type';
 
 
 export const AppointmentForm = () => {
-    // Estado para manejar los datos del formulario
-    // no se si es necesario crear un objeto por defecto, pero lo hago por si acaso ? 
-    
-    // deberia crear un estado global para manejar los datos del formulario y de la lista de turnos
-
-    const [formData, setFormData] = useState <AppointmentDataType>()
 
     const [ appointments, setAppointments] = useState <AppointmentDataType[]> ([])  
+   
+   
+    useEffect(() => {
 
-    // Maneja el envío del formulario
-    // por ahora solo guarda los datos en el estado y en el localStorage    
-    
+
+     localStorage.setItem('appointments', JSON.stringify(appointments));
+
+
+    }, [appointments]);
+
+
+
+
     const HandleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 
-
         e.preventDefault();
+
         const form = e.currentTarget;
 
         const data = {
@@ -38,17 +32,16 @@ export const AppointmentForm = () => {
             service: (form.elements.namedItem('service') as HTMLInputElement)?.value,
         };
 
-        setFormData(data);
+          if (!data.name || !data.email || !data.date || !data.time || !data.service) {
+            alert("Por favor, complete todos los campos del formulario.");
+            return;
+            
+          }
 
-        setAppointments([...appointments, data]);
 
-        localStorage.setItem('appointments', JSON.stringify(appointments));
-        
-        console.log(appointments)
+          setAppointments([...appointments, data]);
     }
 
-
-   
 
   return (
     <div className='border-2 border-gray-300 p-4 rounded-lg shadow-md m-10'>

@@ -1,4 +1,7 @@
 import { Link } from "react-router"
+import { AppointmentCalendar } from "../components/AppointmentCalendar.tsx"
+
+
 // import { AppointmentForm } from "../components/AppointmentForm"
 
 
@@ -25,6 +28,17 @@ export const Home = () => {
 
             {/* esto deberia redirigir a una page y no mostrar directamente el formulario , posteriormente deberia mostrarse el listado de turnos disponibles */}
 
+                {/* a este componente deberian llegarle los datos de los turnos desde el context */}
+
+               <div>
+
+                <h1>Prueba de calendario</h1>
+                < AppointmentCalendar/>
+                
+
+              </div>
+
+
            {/* <AppointmentForm  />  */}
           
 
@@ -34,6 +48,9 @@ export const Home = () => {
 
 
       </div>
+
+     
+
 
 
     </section>
