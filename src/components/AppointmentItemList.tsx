@@ -1,4 +1,4 @@
-import type { AppointmentDataType } from "./AppointmentForm";
+import type { AppointmentDataType } from "./Appointments/AppointmentForm";
 
 export const AppointmentItemList = ({
   name,

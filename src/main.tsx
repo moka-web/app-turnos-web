@@ -4,10 +4,11 @@ import { RouterProvider } from "react-router/dom";
 import './index.css'
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { router } from './routes/routes';
-
+ 
+//react-big-calendar no funciona con StrictMode , no soporta el re-renderizado
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+  // <StrictMode>
     <RouterProvider router={router} />,
-  </StrictMode>,
+  // </StrictMode>,
 )

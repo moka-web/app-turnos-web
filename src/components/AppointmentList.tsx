@@ -1,16 +1,15 @@
-import type { AppointmentDataType } from "./AppointmentForm";
+import type { AppointmentDataType } from "../types/appointment.type";
 import { AppointmentItemList } from "./AppointmentItemList";
 
 
 export const AppointmentList = () => {
-        //necesito que este componente se actualice cuando se agrega un nuevo turno en el formulario
-        
-    console.log(" estoy en el componente de listado ",localStorage.getItem('appointments'));
+    
+    
 
     // Aqui deberia mostrar la lista de turnos guardados en el localStorage
     const appointments = JSON.parse(localStorage.getItem('appointments') || '[]');
 
-    
+    console.log(appointments)
 
 
   return (
