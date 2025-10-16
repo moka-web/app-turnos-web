@@ -3,7 +3,7 @@ import type { ToolbarProps } from "react-big-calendar";
 import type { SlotInfo } from "react-big-calendar";
 import { format, parse, startOfWeek, getDay } from "date-fns";
 import { es } from "date-fns/locale";
-import { useState, useMemo, useCallback } from "react";
+import {  useMemo } from "react";
 import type { AppointmentCalendarProps } from "../../types/appointmentCalendarProps.type";
 const locales = { es };
 
@@ -25,9 +25,10 @@ const messages = {
 
 
 export const AppointmentCalendar = ( {  appointments, onSelectSlot} : AppointmentCalendarProps) => {
-  // ✅ Estado para eventos
+
 
  const events = appointments.map(app => {
+
   const start = new Date(`${app.date}T${app.time}`);
   const end = new Date(start.getTime() + 60 * 60 * 1000); // le sumo 1h al turno
 
@@ -37,11 +38,13 @@ export const AppointmentCalendar = ( {  appointments, onSelectSlot} : Appointmen
     end,
     resource: app, // guardo todo el objeto original por si lo necesito
   };
+
+  
 });
 
-  console.log(appointments)
 
-  // ✅ Memoizar localizer
+
+  //  Memoizar localizer
   const localizer = useMemo(
     () =>
       dateFnsLocalizer({
@@ -54,7 +57,7 @@ export const AppointmentCalendar = ( {  appointments, onSelectSlot} : Appointmen
     []
   );
 
-  // ✅ Memoizar eventos para referencia estable
+  //  Memoizar eventos para referencia estable
   const eventsMemo = useMemo(() => events, [events]);
 
   // Toolbar personalizado: solo Next y Previous
@@ -75,7 +78,6 @@ export const AppointmentCalendar = ( {  appointments, onSelectSlot} : Appointmen
       </div>
     );
   };
-
 
   return (
     <div>
