@@ -8,6 +8,6 @@ export type AppointmentDataType = {
     date: string;
     time: string;
     service: string;
-    id? : string
+    id : string
 }
 

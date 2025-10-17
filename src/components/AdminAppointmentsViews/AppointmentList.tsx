@@ -1,11 +1,11 @@
+import { useAppointmentStore } from "../../store/useAppointmentStore";
 import type { AppointmentDataType } from "../../types/appointment.type";
 import { AppointmentItemList } from "./AppointmentItemList";
 
 export const AppointmentList = () => {
   // Aqui deberia mostrar la lista de turnos guardados en el localStorage
-  const appointments = JSON.parse(localStorage.getItem("appointments") || "[]");
+   const {appointments} = useAppointmentStore()
 
-  console.log("turnos desde Appointment List", appointments);
 
   return (
     <>
@@ -26,6 +26,7 @@ export const AppointmentList = () => {
         <ul className="divide-y divide-gray-200">
           {appointments?.map(
             (appointment: AppointmentDataType, index: number) => (
+
               <AppointmentItemList
                 key={index}
                 name={appointment.name}
@@ -33,6 +34,7 @@ export const AppointmentList = () => {
                 date={appointment.date}
                 time={appointment.time}
                 service={appointment.service}
+                id={appointment.id}
               />
             )
           )}
@@ -45,26 +47,7 @@ export const AppointmentList = () => {
         </ul>
       </div>
 
-      {/* Botón flotante */}
-      <button
-        className="fixed bottom-6 right-6 bg-blue-500 hover:bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
-        onClick={() => console.log("Abrir modal de agregar turno")}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-8 w-8"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 4v16m8-8H4"
-          />
-        </svg>
-      </button>
+  
 
 
 

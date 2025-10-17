@@ -1,7 +1,26 @@
 
+import { useState } from 'react'
+import { AddAppointmentButton } from '../components/AdminAppointmentsViews/AddAppointmentButton'
 import { AppointmentList } from '../components/AdminAppointmentsViews/AppointmentList'
+import { AppointmentManager } from '../components/Appointments/AppointmentManager'
 
 export const AdminHome = () => {
+
+    const [ appointmentButtonClick , setappointmentButtonClick ] = useState(false)
+
+
+    const handleappointmentButtonClick = ()=>{
+
+
+          !appointmentButtonClick ? 
+          setappointmentButtonClick(true) : setappointmentButtonClick(false) ; 
+
+         
+    }  
+
+
+
+
 
   return (
     <>
@@ -45,9 +64,29 @@ export const AdminHome = () => {
 </aside>
 
     
-    <section className=' w-[80%] h-screen p-10 border-2' >
+    <section className=' w-[80%] h-screen p-10 ' >
         <AppointmentList/>
+      {/* Botón flotante */}
+      <AddAppointmentButton clickFunction={handleappointmentButtonClick} active ={appointmentButtonClick} />
     </section>
+
+
+      { appointmentButtonClick && 
+       
+        <div className='flex justify-center items-center  w-[70vw] '>
+
+          <AppointmentManager></AppointmentManager>
+
+        </div>
+    
+       }
+
+
+
+
+
+
+
 
     </div>
     
