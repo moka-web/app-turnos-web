@@ -1,27 +1,24 @@
-import { Nav } from "../components/Nav"
+import { AppointmentManager } from "../components/Appointments/AppointmentManager.tsx";
 
+// import { AppointmentForm } from "../components/AppointmentForm"
 
 export const Home = () => {
   return (
-    <>
-      <Nav />
-
-      <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      
-        <h1 className="text-4xl font-bold mb-4">Welcome to the Home Page</h1>
-        <p className="text-lg">This is a simple React application using Vite and Tailwind CSS.</p>
-      
+    <section className="flex  h-screen">
+      <div className="flex flex-col items-center justify-center h-screen  bg-gray-100 p-10 w-[30%]">
+        <h1 className="text-4xl font-bold mb-4">Agenda tu turno! </h1>
+       
       </div>
 
+      <div className="flex flex-col items-center justify-center h-screen bg-gray-200 p-10 w-[70%]">
+        <div className="flex items-center justify-around bg-white p-6 rounded-lg shadow-md w-full">
+          {/* a este componente deberian llegarle los datos de los turnos desde el context */}
 
-      <section className="flex flex-col items-center justify-center h-screen bg-gray-200">
-        
-        <h2 className="text-4xl font-bold mb-4" > Reserva Tu Turno Online! </h2>
-
-      </section>
-
-
-    </>
-  )
-}
-        
+          <div>
+            <AppointmentManager />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
